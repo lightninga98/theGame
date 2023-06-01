@@ -1,0 +1,15 @@
+C:\Users\Admin\OneDrive\Documents\GitHub\theGame\theGameFiles\bin\Debug\net6.0\theGameFiles.exe
+C:\Users\Admin\OneDrive\Documents\GitHub\theGame\theGameFiles\bin\Debug\net6.0\theGameFiles.deps.json
+C:\Users\Admin\OneDrive\Documents\GitHub\theGame\theGameFiles\bin\Debug\net6.0\theGameFiles.runtimeconfig.json
+C:\Users\Admin\OneDrive\Documents\GitHub\theGame\theGameFiles\bin\Debug\net6.0\theGameFiles.dll
+C:\Users\Admin\OneDrive\Documents\GitHub\theGame\theGameFiles\bin\Debug\net6.0\theGameFiles.pdb
+C:\Users\Admin\OneDrive\Documents\GitHub\theGame\theGameFiles\obj\Debug\net6.0\theGameFiles.csproj.AssemblyReference.cache
+C:\Users\Admin\OneDrive\Documents\GitHub\theGame\theGameFiles\obj\Debug\net6.0\theGameFiles.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\OneDrive\Documents\GitHub\theGame\theGameFiles\obj\Debug\net6.0\theGameFiles.AssemblyInfoInputs.cache
+C:\Users\Admin\OneDrive\Documents\GitHub\theGame\theGameFiles\obj\Debug\net6.0\theGameFiles.AssemblyInfo.cs
+C:\Users\Admin\OneDrive\Documents\GitHub\theGame\theGameFiles\obj\Debug\net6.0\theGameFiles.csproj.CoreCompileInputs.cache
+C:\Users\Admin\OneDrive\Documents\GitHub\theGame\theGameFiles\obj\Debug\net6.0\theGameFiles.dll
+C:\Users\Admin\OneDrive\Documents\GitHub\theGame\theGameFiles\obj\Debug\net6.0\refint\theGameFiles.dll
+C:\Users\Admin\OneDrive\Documents\GitHub\theGame\theGameFiles\obj\Debug\net6.0\theGameFiles.pdb
+C:\Users\Admin\OneDrive\Documents\GitHub\theGame\theGameFiles\obj\Debug\net6.0\theGameFiles.genruntimeconfig.cache
+C:\Users\Admin\OneDrive\Documents\GitHub\theGame\theGameFiles\obj\Debug\net6.0\ref\theGameFiles.dll
