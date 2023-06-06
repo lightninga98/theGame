@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="MapBuilding\Images\" />
+    <Folder Include="MapBuilding\MapData\" />
   </ItemGroup>
 
 </Project>

@@ -17,24 +17,35 @@ namespace theGameFiles.MapBuilding
     {
         private float x;
         private float y;
-        private string name;
+        private string pngName;
         private float width;
         private float height;
         /// <summary>
-        /// The Constructor for the Location Class
+        /// The Main Constructor for the Location Class
         /// </summary>
         /// <param name="newX">(float) The x coordinate of the center of the picture </param>
         /// <param name="newY">(float) The y coordinate of the center of the picture </param>
-        /// <param name="newName">(string) The file name without the .png of the picture </param> 
+        /// <param name="newPngName">(string) The file name without the .png of the picture </param> 
         /// <param name="newWidth">(float) The intended width of the picture </param> 
         /// <param name="newHeight">(float) The intended height of the picture </param> 
-        public Location(float newX, float newY, string newName, float newWidth, float newHeight)
+        public Location(float newX, float newY, string newPngName, float newWidth, float newHeight)
         {
             SetX(newX);
             SetY(newY);
             SetNewWidth(newWidth);
             SetNewHeight(newHeight);
-            SetName(newName);
+            SetPngName(newPngName);
+        }
+        /// <summary>
+        /// The Empty Constructor for the Location Class
+        /// </summary>
+        public Location()
+        {
+            SetX(0);
+            SetY(0);
+            SetNewWidth(10);
+            SetNewHeight(10);
+            SetPngName("cheese");
         }
         /// <summary>
         /// Sets the x coordinate of the center of a Location's picture
@@ -56,23 +67,20 @@ namespace theGameFiles.MapBuilding
         /// Sets the file name of a Location's picture (Don't include .png) 
         /// Defaults on null and when file not found
         /// </summary>
-        /// <param name="newName">(string) The intended file name of the picture. (Don't use .png) </param>
-        public void SetName(string newName)
+        /// <param name="newPngName">(string) The intended file name of the picture. (Don't use .png) </param>
+        public void SetPngName(string newPngName)
         {
-            string loadName = "default";
-            if (newName == null)                                                
+            pngName = newPngName;
+            if (newPngName == null)                                                
             {
                 Console.WriteLine("Image Name is Null. Leaving at default.");
+                pngName = "cheese";
             }
-            else if (!File.Exists(@"c:theGame/theGameFiles/MapBuilding/Images/" + newName + ".png"))
+            else if (!File.Exists(GetLocationPath()))
             {
-                Console.WriteLine("Image is not found in file. Leaving at default.");
+                Console.WriteLine("Image is not found in file. Leaving at default." + GetLocationPath());
+                pngName = "cheese";
             }
-            else
-            {
-                loadName = newName;
-            }
-            name = loadName;
         }
         /// <summary>
         /// Sets the width of a Location's picture.
@@ -108,7 +116,7 @@ namespace theGameFiles.MapBuilding
         /// Gets a Location's picture file name (without .png)
         /// </summary>
         /// <returns>(string) picture file name (without .png)</returns>
-        public string GetName() => name;
+        public string GetPngName() => pngName;
         /// <summary>
         /// Gets a Location's picture width.
         /// </summary>
@@ -120,12 +128,51 @@ namespace theGameFiles.MapBuilding
         /// <returns>(float) picture height</returns>
         public float GetHeight() => height;
         /// <summary>
-        /// Gets a Location Picture's projected path.
+        /// Gets a Location Picture's projected path. Written based off:
+        /// https://stackoverflow.com/questions/14899422/how-to-navigate-a-few-folders-up
         /// </summary>
         /// <returns>(string) Projected picture path</returns>
         public string GetLocationPath()
         {
-            return "C:\\MapBuilding\\Images\\" + name + ".png";
+            return Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\"))
+                + "MapBuilding\\Images\\" + GetPngName() + ".png";
+        }
+        /// <summary>
+        /// Gets a saveable string used for the MapData class. Overrides the default ToString().
+        /// </summary>
+        /// <returns>(string) A loadable string for the MapData class.</returns>
+        override public string ToString()
+        {
+            return GetPngName() + "|" + GetWidth() + "|" + GetHeight() + "|" + GetX() + "|" + GetY();
+        }
+        /// <summary>
+        /// Rebuilds the Location based on input string from the MapData Class
+        /// </summary>
+        /// <param name="loadedString">(string) The input string from the MapData Class.</param>
+        /// <returns>(int) 0 for success. -1 for failure.</returns>
+        public int LoadFromString(string loadedString)
+        {
+            int result = 0;
+            try
+            {
+                string[] locationVar = loadedString.Split('|');
+                SetPngName(locationVar[0]);
+                SetNewWidth(float.Parse(locationVar[1]));
+                SetNewHeight(float.Parse(locationVar[2]));
+                SetX(float.Parse(locationVar[3]));
+                SetY(float.Parse(locationVar[4]));
+            }
+            catch 
+            {
+                result = -1;
+            }
+            return result;
+        }
+
+        public Location Clone()
+        {
+            Location cloned = new Location(GetX(), GetY(), GetPngName(), GetWidth(), GetHeight());
+            return cloned;
         }
 
     }
