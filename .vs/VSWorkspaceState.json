@@ -1,11 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\G",
-    "\\theGameFiles",
-    "\\theGameFiles\\MapBuilding",
-    "\\theGameFiles\\MapBuilding\\Images"
+    ""
   ],
-  "SelectedNode": "\\theGameFiles\\MapBuilding\\Location.cs",
+  "SelectedNode": "\\G.sln",
   "PreviewInSolutionExplorer": false
 }

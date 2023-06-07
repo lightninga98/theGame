@@ -11,15 +11,15 @@ using theGameFiles.MapBuilding;
 
 
 Location goblinHead = new(0, 0, "goblin", 4, 6);
-Location defaultPng = new Location();
-Console.WriteLine(defaultPng.GetPngName());
+Location defaultPng = new();
 Location[] locations = new[] { defaultPng, goblinHead };
-MapData mapHolder = new MapData("testLoad",locations);
+MapData mapHolder = new("testLoad", locations);
 mapHolder.SaveMapData();
-MapData mapHolderTwo = new MapData();
+MapData mapHolderTwo = new();
 mapHolderTwo.LoadMapData("testLoad");
 Location[] printLocations = mapHolder.GetLocationArray();
+Console.Write(printLocations.Length);
 foreach(Location location in printLocations)
 {
-    Console.WriteLine(location.ToString());
+    Console.Write("\n" + location.ToString());
 }

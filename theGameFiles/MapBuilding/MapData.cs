@@ -58,9 +58,10 @@ namespace theGameFiles.MapBuilding
             try
             {
                 using StreamWriter writer = new(stream, Encoding.ASCII);
+                writer.Write(mapName + " " + DateTime.Now.ToString("MM / dd / yyyy hh: mm tt"));
                 foreach (Location location in locationArray)
                 {
-                    writer.WriteLine(location.ToString());
+                    writer.Write("\n" + location.ToString());
                 }
             }
             catch
@@ -85,11 +86,19 @@ namespace theGameFiles.MapBuilding
             try
             {
                 SetMapName(mapName);
-                string mapLocations = File.ReadAllText(GetMapDataPath());
+                string mapLocations = File.ReadAllText(GetMapDataPath()).Trim();
                 string[] mapLoadedStrings = mapLocations.Split(Environment.NewLine);
-                Location[] newMapLocationArray = new Location[mapLoadedStrings.Length];
+                int emptyEntries = 0;                           //Accounting for empty lines at end of file.
+                foreach (string possibleLocation in mapLoadedStrings)
+                {
+                    if(possibleLocation.Equals(""))
+                    {
+                        emptyEntries++;
+                    }
+                }
+                Location[] newMapLocationArray = new Location[mapLoadedStrings.Length - emptyEntries -1]; //Not first line
                 Location loadable = new Location();
-                for (int i = 0; i < mapLoadedStrings.Length; i++)
+                for (int i = 1; i < mapLoadedStrings.Length - emptyEntries; i++)
                 {
                     if (loadable.LoadFromString(mapLoadedStrings[i]) != 0)
                     {
@@ -97,7 +106,7 @@ namespace theGameFiles.MapBuilding
                     }
                     else
                     {
-                        newMapLocationArray[i] = loadable.Clone();
+                        newMapLocationArray[i-1] = loadable.Clone();
                     }
                 }
                 SetLocationArray(newMapLocationArray);
