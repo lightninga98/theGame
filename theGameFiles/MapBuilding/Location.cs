@@ -155,7 +155,13 @@ namespace theGameFiles.MapBuilding
             int result = 0;
             try
             {
+                loadedString = loadedString.Trim();
                 string[] locationVar = loadedString.Split('|');
+                Console.WriteLine("PngName: " + locationVar[0]);
+                Console.WriteLine("Width: " + locationVar[1]);
+                Console.WriteLine("Height: " + locationVar[2]);
+                Console.WriteLine("X: " + locationVar[3]);
+                Console.WriteLine("Y: " + locationVar[4]);
                 SetPngName(locationVar[0]);
                 SetNewWidth(float.Parse(locationVar[1]));
                 SetNewHeight(float.Parse(locationVar[2]));
@@ -171,7 +177,7 @@ namespace theGameFiles.MapBuilding
 
         public Location Clone()
         {
-            Location cloned = new Location(GetX(), GetY(), GetPngName(), GetWidth(), GetHeight());
+            Location cloned = new(GetX(), GetY(), GetPngName(), GetWidth(), GetHeight());
             return cloned;
         }
 
